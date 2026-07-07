@@ -10,4 +10,4 @@
 
 - name: `karpathy-guidelines`
 - path: `skills/karpathy-guidelines/SKILL.md`
-- purpose: 通用编码行为准则，约束复杂度与改动范围。
+- purpose: 通用编码约束，强调简单实现、最小改动和及时验证。

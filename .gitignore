@@ -1,0 +1,9 @@
+examples/**/build/
+examples/**/dist/
+examples/**/bin/
+examples/**/obj/
+examples/**/publish/
+examples/**/*.spec
+examples/**/SYNTEC-demo-opened.txt
+examples/**/SYNTEC-dotnet-*-opened.txt
+examples/**/*-opened.txt

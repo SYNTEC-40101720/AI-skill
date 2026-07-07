@@ -6,6 +6,14 @@
 - 便于跨项目导入
 - 便于后续持续新增与版本管理
 
+## 收纳原则
+
+- 技能优先解决一个具体问题，不追求大而全。
+- 文档尽量短，默认只保留触发场景、必要输入、执行规则、输出要求。
+- 优先沉淀能直接复用的命令、检查项、约束，不堆背景知识。
+- 以实际使用为准，保留能满足使用的最小实例。
+- 如果事情不会重复出现，就不要收成技能。
+
 ## 目录结构
 
 - `skills/`：技能定义（每个技能一个目录）
@@ -21,9 +29,11 @@
 ## 新增技能流程
 
 1. 复制 `templates/SKILL.template.md` 为 `skills/<skill-name>/SKILL.md`
-2. 填写 frontmatter：`name`、`description`、`argument-hint`
-3. 在 `skills/INDEX.md` 增加条目
-4. 提交并推送
+2. 先判断这件事是否会重复出现；一次性问题不要收录
+3. 填写 frontmatter：`name`、`description`、`argument-hint`
+4. 正文以能直接使用为准，优先给出最小可用实例，不用硬卡行数
+5. 在 `skills/INDEX.md` 增加条目
+6. 提交并推送
 
 ## 新增 Prompt 流程
 
@@ -42,6 +52,7 @@
 本地执行：
 
 ```powershell
+Set-ExecutionPolicy -Scope Process Bypass
 ./scripts/validate-frontmatter.ps1
 ```
 

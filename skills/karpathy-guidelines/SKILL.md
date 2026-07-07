@@ -1,67 +1,36 @@
 ---
 name: karpathy-guidelines
-description: Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
+description: "Use when: 编码、审查、重构时，需要用一组简单规则约束复杂度、改动范围和验证方式。"
+argument-hint: "说明目标、限制条件、是否要改代码、以及可用的验证方式"
 license: MIT
 ---
 
 # Karpathy Guidelines
 
-Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
+用于压住常见的 LLM 编码失误：别脑补、别过度设计、别顺手扩大改动、别不验证就结束。
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+## 适用场景
 
-## 1. Think Before Coding
+- 写新代码，但需求边界不够清楚。
+- 修 bug，需要先复现再修复。
+- 做 review 或重构，担心改动越做越大。
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+## 核心规则
 
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+1. 先说清假设，不要静默脑补需求。
+2. 默认选最简单方案，不加没被要求的抽象和扩展点。
+3. 只改和目标直接相关的代码，不顺手清理无关内容。
+4. 改完必须验证，优先跑最小范围的测试或检查。
 
-## 2. Simplicity First
+## 执行方式
 
-**Minimum code that solves the problem. Nothing speculative.**
+1. 先把目标改写成可验证结果。
+2. 如果存在歧义，只提出最少必要问题。
+3. 先做最小改动，再立刻验证。
+4. 验证失败时，继续在当前小范围内修，不要直接扩散。
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+## 输出要求
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+- 明确当前假设或限制。
+- 给出最小可行改动。
+- 说明用什么方式验证完成。
