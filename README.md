@@ -31,3 +31,21 @@
 2. 填写 frontmatter 和输出格式
 3. 如依赖某个技能，请在正文明确引用该技能名
 4. 提交并推送
+
+## 校验机制
+
+仓库已内置 frontmatter 校验：
+
+- 本地脚本：`scripts/validate-frontmatter.ps1`
+- CI 工作流：`.github/workflows/validate-frontmatter.yml`
+
+本地执行：
+
+```powershell
+./scripts/validate-frontmatter.ps1
+```
+
+校验范围：
+
+- `skills/**/SKILL.md`：必须包含 `name`、`description`，并建议包含 `argument-hint`
+- `prompts/**/*.prompt.md`：必须包含 `name`、`description`
